@@ -1,0 +1,29 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-content: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x native_android_app/gradlew
+
+    - name: Build with Gradle
+      run: cd native_android_app && ./gradlew assembleDebug
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: my-downloader-app
+        path: native_android_app/app/build/outputs/apk/debug/app-debug.apk
