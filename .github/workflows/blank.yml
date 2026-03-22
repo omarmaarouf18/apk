@@ -1,21 +1,4 @@
-Workflow file for this run
-.github/workflows/blank.yml at 26460fc
- Check failure on line 1 in .github/workflows/blank.yml
-
-
-GitHub Actions
-/ .github/workflows/blank.yml
-Invalid workflow file
-
-(Line: 9, Col: 5): Unexpected value 'runs-content', (Line: 9, Col: 5): Required property is missing: runs-on
- Check failure on line 8 in .github/workflows/blank.yml
-
-
-GitHub Actions
-/ .github/workflows/blank.yml
-Invalid workflow file
-
-You have an error in your yaml syntax on line 8
+name: Android CI
 
 on:
   push:
@@ -23,24 +6,28 @@ on:
 
 jobs:
   build:
-    runs-content: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: gradle
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x native_android_app/gradlew
+      - name: set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
 
-    - name: Build with Gradle
-      run: cd native_android_app && ./gradlew assembleDebug
+      - name: Grant execute permission for gradlew
+        run: chmod +x native_android_app/gradlew
 
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
-      with:
-        name: my-downloader-app
-        path: native_android_app/app/build/outputs/apk/debug/app-debug.apk
+      - name: Build with Gradle
+        run: |
+          cd native_android_app
+          ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-downloader-app
+          path: native_android_app/app/build/outputs/apk/debug/app-debug.apk
