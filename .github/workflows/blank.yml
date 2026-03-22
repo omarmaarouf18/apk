@@ -1,4 +1,11 @@
-name: Android CI
+ Check failure on line 1 in .github/workflows/blank.yml
+
+
+GitHub Actions
+/ .github/workflows/blank.yml
+Invalid workflow file
+
+(Line: 9, Col: 5): Unexpected value 'runs-content', (Line: 9, Col: 5): Required property is missing: runs-on
 
 on:
   push:
