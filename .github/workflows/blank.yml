@@ -1,3 +1,5 @@
+Workflow file for this run
+.github/workflows/blank.yml at 26460fc
  Check failure on line 1 in .github/workflows/blank.yml
 
 
@@ -6,6 +8,14 @@ GitHub Actions
 Invalid workflow file
 
 (Line: 9, Col: 5): Unexpected value 'runs-content', (Line: 9, Col: 5): Required property is missing: runs-on
+ Check failure on line 8 in .github/workflows/blank.yml
+
+
+GitHub Actions
+/ .github/workflows/blank.yml
+Invalid workflow file
+
+You have an error in your yaml syntax on line 8
 
 on:
   push:
